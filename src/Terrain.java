@@ -25,6 +25,9 @@ public class Terrain {
 	public static Points[][] getGrid(){
 		return grid;
 	}
+	public static BufferedImage getWaterImage(){
+		return waterImage;
+	}
 	
 	// get x-dimensions (number of columns)
 	int getDimX(){
@@ -70,9 +73,9 @@ public class Terrain {
 				 // find normalized height value in range
 				 float val = (grid[x][y].getHeight() - minh) / (maxh - minh);
 				 Color col = new Color(val, val, val, 1.0f);
-				 Color waterColor = new Color(106,195,255);
+				 Color foregroundColor = new Color(106,195,255, 0);
 				 img.setRGB(x, y, col.getRGB());
-				 waterImage.setRGB(x,y,waterColor.getRGB());
+				 waterImage.setRGB(x,y,foregroundColor.getRGB());
 			}
 	}
 	

@@ -16,12 +16,26 @@ public class WaterClickListener extends MouseAdapter {
 		System.out.println(Terrain.getGrid()[e.getX()][e.getY()].getWaterSurface());
 
 		//addWater(getX(), getY());
-		Color waterColor = new Color(106,195,255);
+		Color waterColor = new Color(106,195,255,150);
+		//addWaterOnScreen(e.getX(),e.getY(), waterColor);
 
-		Flow.fp.land.getImage().setRGB(e.getX(), e.getY(), waterColor.getRGB());
+		for(int i = e.getX()- 3; i <= e.getX() + 3; i++)
+		{
+			for(int j = e.getY() - 3; j <= e.getY() + 3; j++)
+			{
+				Flow.fp.land.getWaterImage().setRGB(i,j,waterColor.getRGB());
+			}
+		}
+		//Flow.fp.land.getImage().setRGB(e.getX(), e.getY(), waterColor.getRGB());
 		Flow.fp.repaint();
-		//Terrain.getImage().setRGB(getX(),getY(),255);
-		//Terrain.waterImage.setBackground();
+	}
+	public void addWaterOnScreen(int x, int y, Color waterColor){
+		for(int i = x - 3; i <= x + 3; i++){
+			for(int j = y - 3; i <= y + 3;j++){
+				Flow.fp.land.getImage().setRGB(i,j,waterColor.getRGB());
+			}
+		}
+		Flow.fp.repaint();
 	}
 	public void addWater(int x, int y) {
 		System.out.println("lol");
