@@ -12,7 +12,8 @@ public class Terrain {
 
 	static Points grid[][]; // regular grid of height values
 	int dimx, dimy; // data dimensions
-	BufferedImage img; // greyscale image for displaying the terrain top-down
+	static BufferedImage img; // greyscale image for displaying the terrain top-down
+	static BufferedImage waterImage;
 
 	ArrayList<Integer> permute;	// permuted list of integers in range [0, dimx*dimy)
 	
@@ -36,7 +37,7 @@ public class Terrain {
 	}
 	
 	// get greyscale image
-	public BufferedImage getImage() {
+	public static BufferedImage getImage() {
 		  return img;
 	}
 	
@@ -50,7 +51,8 @@ public class Terrain {
 	// convert height values to greyscale colour and populate an image
 	void deriveImage()
 	{
-		img = new BufferedImage(dimy, dimx, BufferedImage.TYPE_INT_ARGB);
+		img = new BufferedImage(dimx, dimy, BufferedImage.TYPE_INT_ARGB);
+		waterImage = new BufferedImage(dimx, dimy, BufferedImage.TYPE_INT_ARGB);
 		float maxh = -10000.0f, minh = 10000.0f;
 		
 		// determine range of heights
@@ -68,7 +70,9 @@ public class Terrain {
 				 // find normalized height value in range
 				 float val = (grid[x][y].getHeight() - minh) / (maxh - minh);
 				 Color col = new Color(val, val, val, 1.0f);
+				 Color waterColor = new Color(106,195,255);
 				 img.setRGB(x, y, col.getRGB());
+				 waterImage.setRGB(x,y,waterColor.getRGB());
 			}
 	}
 	

@@ -34,6 +34,7 @@ public class Flow {
    
 		fp = new FlowPanel(landdata);
 		fp.setPreferredSize(new Dimension(frameX,frameY));
+		fp.addMouseListener(new WaterClickListener());
 		g.add(fp);
 		//g.addMouseListener(new WaterClickListener());
 	    
@@ -53,7 +54,7 @@ public class Flow {
 		
 		b.add(endB);
 		g.add(b);
-		g.addMouseListener(new WaterClickListener());
+		//fng.addMouseListener(new WaterClickListener());
 
     	
 	frame.setSize(frameX, frameY+50);	// a little extra space at the bottom for buttons

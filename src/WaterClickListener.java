@@ -1,12 +1,13 @@
 import java.util.*;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.awt.*;
 
 public class WaterClickListener extends MouseAdapter {
 	
 	@Override
 	public void mouseClicked(MouseEvent e) {
-		//System.out.println(e.getX() + "," + e.getY() + " has a height of " + Terrain.height[e.getX()][e.getY()].height );
+		System.out.println(e.getX() + "," + e.getY() + " has a height of " + Terrain.getGrid()[e.getX()][e.getY()].getHeight() );
 		//System.out.println(Terrain.height[e.getX()][e.getY()].getHeight());
 		//System.out.println(Terrain.getGrid(e.getX(),e.getY()).getHeight());
 		System.out.println(Terrain.getGrid()[e.getX()][e.getY()].getHeight());
@@ -15,6 +16,12 @@ public class WaterClickListener extends MouseAdapter {
 		System.out.println(Terrain.getGrid()[e.getX()][e.getY()].getWaterSurface());
 
 		//addWater(getX(), getY());
+		Color waterColor = new Color(106,195,255);
+
+		Flow.fp.land.getImage().setRGB(e.getX(), e.getY(), waterColor.getRGB());
+		Flow.fp.repaint();
+		//Terrain.getImage().setRGB(getX(),getY(),255);
+		//Terrain.waterImage.setBackground();
 	}
 	public void addWater(int x, int y) {
 		System.out.println("lol");
