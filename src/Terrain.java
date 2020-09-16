@@ -45,10 +45,12 @@ public class Terrain {
 	}
 	
 	// convert linear position into 2D location in grid
-	void locate(int pos, int [] ind)
+	int [] locate(int position, int [] ind)
 	{
-		ind[0] = (int) pos / dimy; // x
-		ind[1] = pos % dimy; // y	
+		ind[0] = (int) position / dimy; // x
+		ind[1] = position % dimy; // y
+		
+		return ind;	// return x y coordinates of pos
 	}
 	
 	// convert height values to greyscale colour and populate an image
@@ -90,8 +92,9 @@ public class Terrain {
 	
 	// find permuted 2D location from a linear index in the
 	// range [0, dimx*dimy)
-	void getPermute(int i, int [] loc) {
-		locate(permute.get(i), loc);
+	int [] getPermute(int i, int [] loc) {
+		int[] location = locate(permute.get(i), loc);
+		return location;
 	}
 	
 	// read in terrain from file

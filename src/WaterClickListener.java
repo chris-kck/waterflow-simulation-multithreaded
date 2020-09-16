@@ -9,25 +9,18 @@ public class WaterClickListener extends MouseAdapter {
 	public void mouseClicked(MouseEvent e) {
 		System.out.println(e.getX() + "," + e.getY() + " has a height of " + Terrain.getGrid()[e.getX()][e.getY()].getHeight() );
 
+		System.out.println(e.getX() + "," + e.getY() + " has a water surface of " + Terrain.getGrid()[e.getX()][e.getY()].getWaterSurface());
 		//Terrain.getGrid()[e.getX()][e.getY()].setWaterDepth(3);
 		//System.out.println(Terrain.getGrid()[e.getX()][e.getY()].getWaterSurface());
-		for(int i = e.getX() - 3; i <= e.getX() + 3; i++){
-			for(int j = e.getY() -3; j <= e.getY() + 3;j++){
-				System.out.println("Coordinates : " + i + "," + j +" WaterDepth Before: " + Terrain.getGrid()[i][j].getWaterDepth()
-						+ "\n WaterSurface Before: " + Terrain.getGrid()[i][j].getHeight());
-			}
-		}
 		addWater(e.getX(), e.getY());
 		Color waterColor = new Color(106,195,255,150);
 		addWaterOnScreen(e.getX(),e.getY(), waterColor);
-		for(int i = e.getX() - 3; i <= e.getX() + 3; i++)
-		{
-			for(int j = e.getY() -3; j <= e.getY() + 3;j++)
-			{
-				System.out.println("Coordinates : " + i + "," + j +" WaterDepth After: " + Terrain.getGrid()[i][j].getWaterDepth()
-                                                + "\n WaterSurface After: " + Terrain.getGrid()[i][j].getWaterSurface());
-			}
-		}
+
+		System.out.println(e.getX() + "," + e.getY() + " has a new height of " + Terrain.getGrid()[e.getX()][e.getY()].getHeight() );
+
+		System.out.println(e.getX() + "," + e.getY() + " has a new water surface of " + Terrain.getGrid()[e.getX()][e.getY()].getWaterSurface());
+
+
 
 	}
 	public void addWaterOnScreen(int x, int y, Color waterColor){
