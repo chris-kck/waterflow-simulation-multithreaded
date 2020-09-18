@@ -24,6 +24,7 @@ public class Flow {
 	public static void setupGUI(int frameX,int frameY,Terrain landdata) {
 		
 		Dimension fsize = new Dimension(800, 800);
+		//Thread fpt = new Thread(fp);
     	JFrame frame = new JFrame("Waterflow"); 
     	frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     	frame.getContentPane().setLayout(new BorderLayout());
@@ -35,6 +36,7 @@ public class Flow {
 		fp = new FlowPanel(landdata);
 		fp.setPreferredSize(new Dimension(frameX,frameY));
 		fp.addMouseListener(new WaterClickListener());
+		//Thread fpt = new Thread(fp);
 		g.add(fp);
 		//g.addMouseListener(new WaterClickListener());
 	    
@@ -42,16 +44,44 @@ public class Flow {
 	   	//frame.getContentPane().addMouseListener(new WaterClickListener());
 
 		JPanel b = new JPanel();
-	    b.setLayout(new BoxLayout(b, BoxLayout.LINE_AXIS));
+		b.setLayout(new BoxLayout(b, BoxLayout.LINE_AXIS));
+		JButton resetB = new JButton("Reset");
+		resetB.addActionListener(new ActionListener(){
+			public void actionPerformed(ActionEvent e){
+				fp.clearScreen();
+			}
+		});	
+		
+		JButton pauseB = new JButton("Pause");
+		pauseB.addActionListener(new ActionListener(){
+			public void actionPerformed( ActionEvent e){ 
+				fp.suspend();
+			}
+		});
+
+		JButton playB = new JButton("Play");
+		playB.addActionListener(new ActionListener(){
+			public void actionPerformed( ActionEvent e){
+			fp.resume();
+			}
+		});
+
 		JButton endB = new JButton("End");;
 		// add the listener to the jbutton to handle the "pressed" event
 		endB.addActionListener(new ActionListener(){
 			public void actionPerformed(ActionEvent e){
 				// to do ask threads to stop
 				frame.dispose();
+				fp.loop = false;
 			}
 		});
-		
+
+		b.add(resetB);
+		b.add(Box.createRigidArea(new Dimension(50,0)));
+		b.add(pauseB);
+		b.add(Box.createRigidArea(new Dimension(50,0)));
+		b.add(playB);
+		b.add(Box.createRigidArea(new Dimension(50,0)));
 		b.add(endB);
 		g.add(b);
 		//fng.addMouseListener(new WaterClickListener());
@@ -65,6 +95,7 @@ public class Flow {
         frame.setVisible(true);
         Thread fpt = new Thread(fp);
         fpt.start();
+	//fp.suspend();
 	}
 	
 		
