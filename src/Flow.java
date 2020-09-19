@@ -95,7 +95,6 @@ public class Flow {
         frame.setVisible(true);
         Thread fpt = new Thread(fp);
         fpt.start();
-	//fp.suspend();
 	}
 	
 		

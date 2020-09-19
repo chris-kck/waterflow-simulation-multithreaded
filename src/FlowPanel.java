@@ -11,11 +11,13 @@ public class FlowPanel extends JPanel implements Runnable {
 	
 	FlowPanel(Terrain terrain) {
 		land=terrain;
+		//this.start = start;
+		//this.finish = finish;
 	}
-	//boolean suspended = true;
 	boolean running;
 	boolean loop = true;
-	int x = 1;
+	int start;			//these two represent where each thread will start and finish processing  
+	int finish;
 		
 	// responsible for painting the terrain and water
 	// as images
@@ -31,11 +33,6 @@ public class FlowPanel extends JPanel implements Runnable {
 			g.drawImage(land.getImage(), 0, 0, null);
 			g.drawImage(land.waterImage, 0, 0, null);
 		}
-		/*addMouseListener(new MouseAdapter(){
-			public void mouseClicked(MouseEvent e){
-				g.drawImage(land.getImage(), 0, 0, null);
-			}
-		});*/
 	}
 	public int[] checkNeighbors(int x, int y){
 		int [] lowest = new int[2];
@@ -85,9 +82,12 @@ public class FlowPanel extends JPanel implements Runnable {
 		Color waterColor = new Color(21,6,189);
 		Color transparent = new Color(200,195,255,0);
 
-		land.getWaterImage().setRGB(x,y,transparent.getRGB());
-		land.getWaterImage().setRGB(transferToX,transferToY,waterColor.getRGB());
-		repaint();
+		//if(x != 0 && x!= land.getDimX() && y != 0 && y != land.getDimY() )
+		//{
+			land.getWaterImage().setRGB(x,y,transparent.getRGB());
+			land.getWaterImage().setRGB(transferToX,transferToY,waterColor.getRGB());
+			repaint();
+		//}
 
 
 	}
