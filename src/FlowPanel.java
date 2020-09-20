@@ -9,10 +9,10 @@ import java.util.*;
 public class FlowPanel extends JPanel implements Runnable {
 	Terrain land;
 	
-	FlowPanel(Terrain terrain) {
+	FlowPanel(Terrain terrain, int start, int finish) {
 		land=terrain;
-		//this.start = start;
-		//this.finish = finish;
+		this.start = start;
+		this.finish = finish;
 	}
 	boolean running;
 	boolean loop = true;
@@ -100,7 +100,7 @@ public class FlowPanel extends JPanel implements Runnable {
 		{
 		if(running)
 		{
-			for(int i = 0; i < land.dim();i++)
+			for(int i = start; i < finish;i++)
 			{
 				int[] position = new int[2];
 				int [] location = land.getPermute(i,position);
