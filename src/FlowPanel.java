@@ -9,13 +9,16 @@ import java.util.*;
 public class FlowPanel extends JPanel implements Runnable {
 	Terrain land;
 	
-	FlowPanel(Terrain terrain) {
+	FlowPanel(Terrain terrain, int start, int finish) {
 		land=terrain;
+		this.start = start;
+		this.finish = finish;
 	}
 	//boolean suspended = true;
 	boolean running;
 	boolean loop = true;
-	int x = 1;
+	int start;
+	int finish;
 		
 	// responsible for painting the terrain and water
 	// as images
@@ -37,7 +40,7 @@ public class FlowPanel extends JPanel implements Runnable {
 			}
 		});*/
 	}
-	public int[] checkNeighbors(int x, int y){
+	int[] checkNeighbors(int x, int y){
 		int [] lowest = new int[2];
 		float minimum;
 		ArrayList<Float> heights= new ArrayList<Float>();
@@ -63,7 +66,7 @@ public class FlowPanel extends JPanel implements Runnable {
 		}
 		return lowest;
 	}
-	public void transfer(int x, int y, int transferToX, int transferToY){
+	void transfer(int x, int y, int transferToX, int transferToY){
 		//System.out.println("Haha");
 		float subtracted = land.getGrid()[x][y].getWaterSurface() - 0.01f;
 		float added = land.getGrid()[transferToX][transferToY].getWaterSurface() + 0.01f;
@@ -100,10 +103,11 @@ public class FlowPanel extends JPanel implements Runnable {
 		{
 		if(running)
 		{
-			for(int i = 0; i < land.dim();i++)
+			for(int i = start; i <= finish;i++)
 			{
 				int[] position = new int[2];
 				int [] location = land.getPermute(i,position);
+				//System.out.println("Thread Name + " + Thread.currentThread().getName() + " i = " + i);
 				int x = location[0];
 				int y = location[1];
 				int lowestPointX;
@@ -118,20 +122,19 @@ public class FlowPanel extends JPanel implements Runnable {
 					transfer(x,y,lowestPointX,lowestPointY);//this will do both graphical and mathematical transfers
 				}
 			}
-
 			}
 		}
 		System.out.print("");
 		}
 	}
-	public void suspend(){
+	void suspend(){
 		running = false;
 	}
-	public void resume(){
+	void resume(){
 		running = true;
 		//notify();
 	}
-	public void clearScreen(){
+	void clearScreen(){
 		Color transparent = new Color(200,195,255,0);
 		for(int i = 0; i < land.getDimX(); i++){
 			for(int j = 0; j < land.getDimY(); j++){

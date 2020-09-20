@@ -10,6 +10,7 @@ public class Flow {
 	static int frameX;
 	static int frameY;
 	static FlowPanel fp;
+	static FlowPanel fp2;
 
 	// start timer
 	private static void tick(){
@@ -33,11 +34,13 @@ public class Flow {
       	JPanel g = new JPanel();
         g.setLayout(new BoxLayout(g, BoxLayout.PAGE_AXIS)); 
    
-		fp = new FlowPanel(landdata);
+		fp = new FlowPanel(landdata, 0, landdata.dim()/2);
+		fp2 = new FlowPanel(landdata,landdata.dim()/2 + 1, landdata.dim()-1);
 		fp.setPreferredSize(new Dimension(frameX,frameY));
 		fp.addMouseListener(new WaterClickListener());
 		//Thread fpt = new Thread(fp);
 		g.add(fp);
+		//g.add(fp2);
 		//g.addMouseListener(new WaterClickListener());
 	    
 		// to do: add a MouseListener, buttons and ActionListeners on those buttons
@@ -56,6 +59,7 @@ public class Flow {
 		pauseB.addActionListener(new ActionListener(){
 			public void actionPerformed( ActionEvent e){ 
 				fp.suspend();
+				fp2.suspend();
 			}
 		});
 
@@ -63,6 +67,7 @@ public class Flow {
 		playB.addActionListener(new ActionListener(){
 			public void actionPerformed( ActionEvent e){
 			fp.resume();
+			fp2.resume();
 			}
 		});
 
@@ -73,6 +78,7 @@ public class Flow {
 				// to do ask threads to stop
 				frame.dispose();
 				fp.loop = false;
+				fp2.loop = false;
 			}
 		});
 
@@ -95,7 +101,8 @@ public class Flow {
         frame.setVisible(true);
         Thread fpt = new Thread(fp);
         fpt.start();
-	//fp.suspend();
+	Thread fpt2 = new Thread(fp2);
+	fpt2.start();
 	}
 	
 		
