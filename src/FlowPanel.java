@@ -18,6 +18,7 @@ public class FlowPanel extends JPanel implements Runnable {
 	boolean loop = true;
 	int start;			//these two represent where each thread will start and finish processing  
 	int finish;
+	int pressed = 0;
 		
 	// responsible for painting the terrain and water
 	// as images
@@ -122,14 +123,29 @@ public class FlowPanel extends JPanel implements Runnable {
 			}
 		}
 		System.out.print("");
+		//System.out.println("Thread Name is: " + Thread.currentThread().getName());
+
 		}
 	}
-	public void suspend(){
-		running = false;
+	synchronized void suspend(){
+		//running = false;
+		//wait();
+		try{
+		wait(900);
+		}
+		catch(InterruptedException e)
+		{
+			e.printStackTrace();
+		}
+		//System.out.println("Thread Name is: " + Thread.currentThread().getName());
+			
 	}
-	public void resume(){
+	synchronized void resume(){
 		running = true;
-		//notify();
+		System.out.println("Play presssed " + pressed + "times");
+		if(pressed > 1){
+			notify();
+		}
 	}
 	public void clearScreen(){
 		Color transparent = new Color(200,195,255,0);

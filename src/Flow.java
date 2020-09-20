@@ -28,7 +28,6 @@ public class Flow {
     	JFrame frame = new JFrame("Waterflow"); 
     	frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     	frame.getContentPane().setLayout(new BorderLayout());
-	//frame.getContentPane().addMouseListener(new WaterClickListener());
     	
       	JPanel g = new JPanel();
         g.setLayout(new BoxLayout(g, BoxLayout.PAGE_AXIS)); 
@@ -70,6 +69,10 @@ public class Flow {
 		JButton playB = new JButton("Play");
 		playB.addActionListener(new ActionListener(){
 			public void actionPerformed( ActionEvent e){
+			fp.pressed++;
+			fp2.pressed++;
+			fp3.pressed++;
+			fp4.pressed++;
 			fp.resume();
 			fp2.resume();
 			fp3.resume();
@@ -118,7 +121,7 @@ public class Flow {
 	fpt.start();
 	fpt2.start();
 	fpt3.start();
-	fpt3.start();
+	fpt4.start();
 	}
 	
 		
