@@ -44,6 +44,13 @@ public class Parallelize extends FlowPanel
 	}
 	public void suspend(){
 		running = false;
+		try
+		{
+			wait(1000);
+		}
+		catch(InterruptedException e){
+			e.printStackTrace();
+		}
 	}
 	public void resume(){
 		running = true;
