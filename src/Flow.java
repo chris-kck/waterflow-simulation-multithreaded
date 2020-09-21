@@ -10,6 +10,8 @@ public class Flow {
 	static int frameX;
 	static int frameY;
 	static FlowPanel fp;
+	static Parallelize[] waterThreads = new Parallelize[4];//subject to name change
+
 
 	// start timer
 	private static void tick(){
@@ -23,8 +25,7 @@ public class Flow {
 	
 	public static void setupGUI(int frameX,int frameY,Terrain landdata) {
 		
-		Dimension fsize = new Dimension(800, 800);
-		//Thread fpt = new Thread(fp);
+	Dimension fsize = new Dimension(800, 800);
     	JFrame frame = new JFrame("Waterflow"); 
     	frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     	frame.getContentPane().setLayout(new BorderLayout());
@@ -34,6 +35,11 @@ public class Flow {
         g.setLayout(new BoxLayout(g, BoxLayout.PAGE_AXIS)); 
    
 		fp = new FlowPanel(landdata);
+		waterThreads[0] = new Parallelize(0,landdata.dim()/4);
+		waterThreads[1] = new Parallelize(landdata.dim()/4,landdata.dim()/2);
+		waterThreads[2] = new Parallelize(landdata.dim()/2,3*(landdata.dim())/4);
+		waterThreads[3] = new Parallelize(3*(landdata.dim())/4,landdata.dim());
+
 		fp.setPreferredSize(new Dimension(frameX,frameY));
 		fp.addMouseListener(new WaterClickListener());
 		//Thread fpt = new Thread(fp);
@@ -56,14 +62,18 @@ public class Flow {
 		JButton pauseB = new JButton("Pause");
 		pauseB.addActionListener(new ActionListener(){
 			public void actionPerformed( ActionEvent e){ 
-				fp.suspend();
+				for(int i = 0; i < 4; i++){
+					waterThreads[i].suspend();
+				}
 			}
 		});
 
 		JButton playB = new JButton("Play");
 		playB.addActionListener(new ActionListener(){
 			public void actionPerformed( ActionEvent e){
-			fp.resume();
+				for(int i = 0; i < 4; i++){
+					waterThreads[i].resume();
+				}
 			}
 		});
 
@@ -73,7 +83,9 @@ public class Flow {
 			public void actionPerformed(ActionEvent e){
 				// to do ask threads to stop
 				frame.dispose();
-				fp.loop = false;
+				for(int i = 0; i < 4; i++){
+					waterThreads[i].loop = false;
+				}
 			}
 		});
 
@@ -98,6 +110,14 @@ public class Flow {
         fpt.start();
 	//Thread fpt2 = new Thread(fp2);
 	//fpt2.start();
+	Thread [] para = new Thread[4];
+	for(int i = 0; i < 4; i++){
+		para[i] = new Thread(waterThreads[i]);
+	}
+	for(int j = 0; j < 4; j++){
+		para[j].start();
+	}
+
 	}
 	
 		
@@ -121,15 +141,21 @@ public class Flow {
 		// to do: initialise and start simulation
 		/*Prallelize para = new Parallelize(5,10);
 		Thread paraThread = new Thread(para);*/
-		Thread [] para = new Thread[5];
-		for(int i = 0; i < 5; i++)
+		/*Thread [] para = new Thread[5];
+		for(int i = 0; i < 1; i++)
 		{
 			para[i] = new Thread(new Parallelize(i, i+8));
 		}
-		for(int j = 0; j < 5;j++ )
-		{
-			para[j].start();
-		}
+		para[0].start();*/
+		/*para[1].start();
+		para[2].start();
+		para[3].start();
+		para[4].start();*/
+		//System.out.println(fp.land.dim());
+
+
+
+
 
 		//paraThread.start();
 	}

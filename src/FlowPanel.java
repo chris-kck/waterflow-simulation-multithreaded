@@ -11,6 +11,7 @@ public class FlowPanel extends JPanel implements Runnable {
 	
 	FlowPanel(Terrain terrain) {
 		land=terrain;
+		System.out.println("With terrain arg");
 	}
 	FlowPanel(){
 	}
@@ -43,21 +44,21 @@ public class FlowPanel extends JPanel implements Runnable {
 		int [] lowest = new int[2];
 		float minimum;
 		ArrayList<Float> heights= new ArrayList<Float>();
-		heights.add(land.getGrid()[x-1][y-1].getWaterSurface());
-		heights.add(land.getGrid()[x][y-1].getWaterSurface());
-		heights.add(land.getGrid()[x+1][y-1].getWaterSurface());
-		heights.add(land.getGrid()[x-1][y].getWaterSurface());
-		heights.add(land.getGrid()[x+1][y].getWaterSurface());
-		heights.add(land.getGrid()[x-1][y+1].getWaterSurface());
-		heights.add(land.getGrid()[x][y+1].getWaterSurface());
-		heights.add(land.getGrid()[x+1][y+1].getWaterSurface());
+		heights.add(Flow.fp.land.getGrid()[x-1][y-1].getWaterSurface());
+		heights.add(Flow.fp.land.getGrid()[x][y-1].getWaterSurface());
+		heights.add(Flow.fp.land.getGrid()[x+1][y-1].getWaterSurface());
+		heights.add(Flow.fp.land.getGrid()[x-1][y].getWaterSurface());
+		heights.add(Flow.fp.land.getGrid()[x+1][y].getWaterSurface());
+		heights.add(Flow.fp.land.getGrid()[x-1][y+1].getWaterSurface());
+		heights.add(Flow.fp.land.getGrid()[x][y+1].getWaterSurface());
+		heights.add(Flow.fp.land.getGrid()[x+1][y+1].getWaterSurface());
 		
 		minimum = Collections.min(heights);
 		//System.out.println("Minimum is: " + minimum);
 
 		for(int i = x-1; i <= x+1; i++){
 			for(int j = y-1; j <= y+1; j++){
-				if(land.getGrid()[i][j].getWaterSurface() == minimum){
+				if(Flow.fp.land.getGrid()[i][j].getWaterSurface() == minimum){
 					lowest[0] = i;
 					lowest[1] = j;
 				}
@@ -67,29 +68,29 @@ public class FlowPanel extends JPanel implements Runnable {
 	}
 	void transfer(int x, int y, int transferToX, int transferToY){
 		//System.out.println("Haha");
-		float subtracted = land.getGrid()[x][y].getWaterSurface() - 0.01f;
-		float added = land.getGrid()[transferToX][transferToY].getWaterSurface() + 0.01f;
+		float subtracted = Flow.fp.land.getGrid()[x][y].getWaterSurface() - 0.01f;
+		float added = Flow.fp.land.getGrid()[transferToX][transferToY].getWaterSurface() + 0.01f;
 		//subtract 1 water unit from the center point
 		//land.getGrid()[x][y].setWaterSurface(subtracted);
 		//land.getGrid()[x][y].setWaterDepth(land.getGrid()[x][y].getWaterDepth() - 1);
-		if(land.getGrid()[x][y].getWaterDepth() > 0)
+		if(Flow.fp.land.getGrid()[x][y].getWaterDepth() > 0)
 		{
-			land.getGrid()[x][y].setWaterDepth(land.getGrid()[x][y].getWaterDepth() - 1);
+			Flow.fp.land.getGrid()[x][y].setWaterDepth(Flow.fp.land.getGrid()[x][y].getWaterDepth() - 1);
 		}
 		else
 		{
-			land.getGrid()[x][y].setWaterDepth(0);
+			Flow.fp.land.getGrid()[x][y].setWaterDepth(0);
 		}
 		//add 1 water unit to the target point
 		//land.getGrid()[transferToX][transferToY].setWaterSurface(added);
-		land.getGrid()[transferToX][transferToY].setWaterDepth(1);
+		Flow.fp.land.getGrid()[transferToX][transferToY].setWaterDepth(1);
 
 		Color waterColor = new Color(21,6,189);
 		Color transparent = new Color(200,195,255,0);
 
-		land.getWaterImage().setRGB(x,y,transparent.getRGB());
-		land.getWaterImage().setRGB(transferToX,transferToY,waterColor.getRGB());
-		repaint();
+		Flow.fp.land.getWaterImage().setRGB(x,y,transparent.getRGB());
+		Flow.fp.land.getWaterImage().setRGB(transferToX,transferToY,waterColor.getRGB());
+		Flow.fp.repaint();
 
 
 	}
@@ -98,11 +99,11 @@ public class FlowPanel extends JPanel implements Runnable {
 		// display loop here
 		// to do: this should be controlled by the GUI
 		// to allow stopping and starting
-		while(loop)
+		/*while(loop)
 		{
 		if(running)
 		{
-			for(int i = 0; i <= land.dim();i++)
+			for(int i = 0; i < land.dim();i++)
 			{
 				int[] position = new int[2];
 				int [] location = land.getPermute(i,position);
@@ -124,10 +125,10 @@ public class FlowPanel extends JPanel implements Runnable {
 			}
 		}
 		System.out.print("");
-		}
+		}*/
 	}
 	void suspend(){
-		//running = false;
+		running = false;
 		System.out.println("Extends works");
 	}
 	void resume(){
