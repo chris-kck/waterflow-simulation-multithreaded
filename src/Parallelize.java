@@ -42,17 +42,17 @@ public class Parallelize extends FlowPanel
 		}
 		
 	}
-	synchronized void suspend(){
+	void suspend(){
 		running = false;
-		try
+		/*try
 		{
 			Thread.currentThread().wait(1000);
 		}
 		catch(InterruptedException e){
 			e.printStackTrace();
-		}
+		}*/
 	}
-	synchronized void resume(){
+	void resume(){
 		running = true;
 	}
 }

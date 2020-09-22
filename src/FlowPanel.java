@@ -34,11 +34,6 @@ public class FlowPanel extends JPanel implements Runnable {
 			g.drawImage(land.getImage(), 0, 0, null);
 			g.drawImage(land.waterImage, 0, 0, null);
 		}
-		/*addMouseListener(new MouseAdapter(){
-			public void mouseClicked(MouseEvent e){
-				g.drawImage(land.getImage(), 0, 0, null);
-			}
-		});*/
 	}
 	int[] checkNeighbors(int x, int y){
 		int [] lowest = new int[2];
@@ -85,12 +80,12 @@ public class FlowPanel extends JPanel implements Runnable {
 		//land.getGrid()[transferToX][transferToY].setWaterSurface(added);
 		Flow.fp.land.getGrid()[transferToX][transferToY].setWaterDepth(1);
 
-		//Color waterColor = new Color(21,6,189);
-		//Color transparent = new Color(200,195,255,0);
+		Color waterColor = new Color(21,6,189);
+		Color transparent = new Color(200,195,255,0);
 
-		//Flow.fp.land.getWaterImage().setRGB(x,y,transparent.getRGB());
-		//Flow.fp.land.getWaterImage().setRGB(transferToX,transferToY,waterColor.getRGB());
-		//Flow.fp.repaint();
+		Flow.fp.land.getWaterImage().setRGB(x,y,transparent.getRGB());
+		Flow.fp.land.getWaterImage().setRGB(transferToX,transferToY,waterColor.getRGB());
+		repaint();
 
 
 	}
@@ -99,7 +94,7 @@ public class FlowPanel extends JPanel implements Runnable {
 		// display loop here
 		// to do: this should be controlled by the GUI
 		// to allow stopping and starting
-		Color waterColor = new Color(21,6,189);
+		/*Color waterColor = new Color(21,6,189);
 		Color transparent = new Color(0,0,0,0);
 		while(loop)
 		{
@@ -123,7 +118,7 @@ public class FlowPanel extends JPanel implements Runnable {
 
 				/*if(land.getGrid()[x][y].getWaterSurface() > land.getGrid()[lowestPointX][lowestPointY].getWaterSurface()){
 					transfer(x,y,lowestPointX,lowestPointY);//this will do both graphical and mathematical transfers
-				}*/
+				}
 				}
 				else{
 					land.getWaterImage().setRGB(x,y,transparent.getRGB());
@@ -132,7 +127,7 @@ public class FlowPanel extends JPanel implements Runnable {
 		}
 		System.out.print("");
 		repaint();
-		}
+		}*/
 	}
 /*	void suspend(){
 		running = false;
