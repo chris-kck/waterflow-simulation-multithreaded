@@ -85,12 +85,12 @@ public class FlowPanel extends JPanel implements Runnable {
 		//land.getGrid()[transferToX][transferToY].setWaterSurface(added);
 		Flow.fp.land.getGrid()[transferToX][transferToY].setWaterDepth(1);
 
-		Color waterColor = new Color(21,6,189);
-		Color transparent = new Color(200,195,255,0);
+		//Color waterColor = new Color(21,6,189);
+		//Color transparent = new Color(200,195,255,0);
 
-		Flow.fp.land.getWaterImage().setRGB(x,y,transparent.getRGB());
-		Flow.fp.land.getWaterImage().setRGB(transferToX,transferToY,waterColor.getRGB());
-		Flow.fp.repaint();
+		//Flow.fp.land.getWaterImage().setRGB(x,y,transparent.getRGB());
+		//Flow.fp.land.getWaterImage().setRGB(transferToX,transferToY,waterColor.getRGB());
+		//Flow.fp.repaint();
 
 
 	}
@@ -99,7 +99,9 @@ public class FlowPanel extends JPanel implements Runnable {
 		// display loop here
 		// to do: this should be controlled by the GUI
 		// to allow stopping and starting
-		/*while(loop)
+		Color waterColor = new Color(21,6,189);
+		Color transparent = new Color(0,0,0,0);
+		while(loop)
 		{
 		if(running)
 		{
@@ -110,31 +112,36 @@ public class FlowPanel extends JPanel implements Runnable {
 				//System.out.println("Thread Name + " + Thread.currentThread().getName() + " i = " + i);
 				int x = location[0];
 				int y = location[1];
-				int lowestPointX;
-				int lowestPointY;
+				//int lowestPointX;
+				//int lowestPointY;
 				//System.out.println("Random Location is " + location[0] + " " + location[1]);
-				if(land.getGrid()[x][y].getWaterDepth() != 0){
-					int [] lowestPoint = checkNeighbors(x,y);
-					lowestPointX = lowestPoint[0];
-					lowestPointY = lowestPoint[1];
+				if(land.getGrid()[x][y].getWaterDepth() > 0){
+					//int [] lowestPoint = checkNeighbors(x,y);
+					//lowestPointX = lowestPoint[0];
+					//lowestPointY = lowestPoint[1];
+					land.getWaterImage().setRGB(x,y,waterColor.getRGB());
 
-				if(land.getGrid()[x][y].getWaterSurface() > land.getGrid()[lowestPointX][lowestPointY].getWaterSurface()){
+				/*if(land.getGrid()[x][y].getWaterSurface() > land.getGrid()[lowestPointX][lowestPointY].getWaterSurface()){
 					transfer(x,y,lowestPointX,lowestPointY);//this will do both graphical and mathematical transfers
+				}*/
 				}
-			}
+				else{
+					land.getWaterImage().setRGB(x,y,transparent.getRGB());
+				}
 			}
 		}
 		System.out.print("");
-		}*/
+		repaint();
+		}
 	}
-	void suspend(){
+/*	void suspend(){
 		running = false;
 		System.out.println("Extends works");
 	}
 	void resume(){
 		running = true;
 		//notify();
-	}
+	}*/
 	void clearScreen(){
 		Color transparent = new Color(200,195,255,0);
 		for(int i = 0; i < land.getDimX(); i++){

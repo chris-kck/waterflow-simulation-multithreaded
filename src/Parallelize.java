@@ -3,7 +3,7 @@ public class Parallelize extends FlowPanel
 	int start;
 	int finish;
 	boolean running;
-	boolean loop = true;
+	volatile boolean loop = true;
 
 
 	Parallelize(int start, int finish){
@@ -38,21 +38,21 @@ public class Parallelize extends FlowPanel
 					}
 				}
 			}
-			System.out.print("");
+			//System.out.print("");
 		}
 		
 	}
-	public void suspend(){
+	synchronized void suspend(){
 		running = false;
 		try
 		{
-			wait(1000);
+			Thread.currentThread().wait(1000);
 		}
 		catch(InterruptedException e){
 			e.printStackTrace();
 		}
 	}
-	public void resume(){
+	synchronized void resume(){
 		running = true;
 	}
 }
