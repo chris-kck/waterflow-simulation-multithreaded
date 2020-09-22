@@ -44,6 +44,7 @@ public class Parallelize extends FlowPanel
 	}
 	void suspend(){
 		running = false;
+<<<<<<< HEAD
 		/*try
 		{
 			Thread.currentThread().wait(1000);
@@ -51,6 +52,8 @@ public class Parallelize extends FlowPanel
 		catch(InterruptedException e){
 			e.printStackTrace();
 		}*/
+=======
+>>>>>>> parent of fc0cbe7... Version 10 trying to implement wait
 	}
 	void resume(){
 		running = true;
