@@ -16,8 +16,8 @@ public class FlowPanel extends JPanel implements Runnable {
 	FlowPanel(){
 	}
 	//boolean suspended = true;
-	boolean running;
-	boolean loop = true;
+	/*boolean running;
+	boolean loop = true;*/
 
 		
 	// responsible for painting the terrain and water

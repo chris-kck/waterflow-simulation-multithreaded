@@ -2,7 +2,7 @@ public class Parallelize extends FlowPanel
 {
 	int start;
 	int finish;
-	boolean running;
+	boolean running = true;
 	volatile boolean loop = true;
 
 
