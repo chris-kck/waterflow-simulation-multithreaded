@@ -32,10 +32,7 @@ public class Flow {
       	JPanel g = new JPanel();
         g.setLayout(new BoxLayout(g, BoxLayout.PAGE_AXIS)); 
    
-		fp = new FlowPanel(landdata,0,landdata.dim()/4);
-		fp2 = new FlowPanel(landdata,landdata.dim()/4,landdata.dim()/2);
-		fp3 = new FlowPanel(landdata,landdata.dim()/2,3*(landdata.dim())/4);
-		fp4 = new FlowPanel(landdata,3*(landdata.dim())/4,landdata.dim());
+		fp = new FlowPanel(landdata,0,landdata.dim());
 
 
 		fp.setPreferredSize(new Dimension(frameX,frameY));
@@ -60,23 +57,13 @@ public class Flow {
 		pauseB.addActionListener(new ActionListener(){
 			public void actionPerformed( ActionEvent e){ 
 				fp.suspend();
-				fp2.suspend();
-				fp3.suspend();
-				fp4.suspend();
 			}
 		});
 
 		JButton playB = new JButton("Play");
 		playB.addActionListener(new ActionListener(){
 			public void actionPerformed( ActionEvent e){
-			fp.pressed++;
-			fp2.pressed++;
-			fp3.pressed++;
-			fp4.pressed++;
 			fp.resume();
-			fp2.resume();
-			fp3.resume();
-			fp4.resume();
 
 			}
 		});
@@ -88,9 +75,6 @@ public class Flow {
 				// to do ask threads to stop
 				frame.dispose();
 				fp.loop = false;
-				fp2.loop = false;
-				fp3.loop = false;
-				fp4.loop = false;
 
 			}
 		});
@@ -113,15 +97,8 @@ public class Flow {
 	//frame.getContentPane().addMouseListener(new WaterClickListener());
         frame.setVisible(true);
         Thread fpt = new Thread(fp);
-        Thread fpt2 = new Thread(fp2);
-        Thread fpt3 = new Thread(fp3); 
-        Thread fpt4 = new Thread(fp4);
         
-	
 	fpt.start();
-	fpt2.start();
-	fpt3.start();
-	fpt4.start();
 	}
 	
 		

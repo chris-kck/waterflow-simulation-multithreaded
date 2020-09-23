@@ -101,7 +101,7 @@ public class FlowPanel extends JPanel implements Runnable {
 		{
 		if(running)
 		{
-			for(int i = start; i < finish;i++)
+			for(int i = 0; i < land.dim();i++)
 			{
 				int[] position = new int[2];
 				int [] location = land.getPermute(i,position);
@@ -128,24 +128,24 @@ public class FlowPanel extends JPanel implements Runnable {
 		}
 	}
 	synchronized void suspend(){
-		//running = false;
+		running = false;
 		//wait();
-		try{
+		/*try{
 		wait(900);
 		}
 		catch(InterruptedException e)
 		{
 			e.printStackTrace();
-		}
+		}*/
 		//System.out.println("Thread Name is: " + Thread.currentThread().getName());
 			
 	}
 	synchronized void resume(){
 		running = true;
 		System.out.println("Play presssed " + pressed + "times");
-		if(pressed > 1){
+		/*if(pressed > 1){
 			notify();
-		}
+		}*/
 	}
 	public void clearScreen(){
 		Color transparent = new Color(200,195,255,0);
