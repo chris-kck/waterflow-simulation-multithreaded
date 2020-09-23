@@ -5,6 +5,7 @@ import java.awt.Color;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseAdapter;
 import java.util.*;
+import java.util.concurrent.atomic.*;
 
 public class FlowPanel extends JPanel implements Runnable {
 	Terrain land;
@@ -16,14 +17,14 @@ public class FlowPanel extends JPanel implements Runnable {
 	FlowPanel(){
 	}
 	//boolean suspended = true;
-	boolean running = true;
+	volatile boolean running = true;
 	volatile boolean loop = true;
 
 		
 	// responsible for painting the terrain and water
 	// as images
 	@Override
-    protected void paintComponent(Graphics g) {			//this g is responsible for hanging the image on the JPanel
+    synchronized protected void paintComponent(Graphics g) {			//this g is responsible for hanging the image on the JPanel
 		int width = getWidth();
 		int height = getHeight();
 		  
@@ -35,8 +36,9 @@ public class FlowPanel extends JPanel implements Runnable {
 			g.drawImage(land.waterImage, 0, 0, null);
 		}
 	}
-	int[] checkNeighbors(int x, int y){
+	/*synchronized int[] checkNeighbors(int x, int y){
 		int [] lowest = new int[2];
+		//AtomicIntegerArray lowest = new AtomicIntegerArray(2);
 		float minimum;
 		ArrayList<Float> heights= new ArrayList<Float>();
 		heights.add(Flow.fp.land.getGrid()[x-1][y-1].getWaterSurface());
@@ -56,12 +58,14 @@ public class FlowPanel extends JPanel implements Runnable {
 				if(Flow.fp.land.getGrid()[i][j].getWaterSurface() == minimum){
 					lowest[0] = i;
 					lowest[1] = j;
+					//lowest.set(0,i);
+					//lowest.set(1,j);
 				}
 			}
 		}
 		return lowest;
 	}
-	void transfer(int x, int y, int transferToX, int transferToY){
+	synchronized void transfer(int x, int y, int transferToX, int transferToY){
 		//System.out.println("Haha");
 		float subtracted = Flow.fp.land.getGrid()[x][y].getWaterSurface() - 0.01f;
 		float added = Flow.fp.land.getGrid()[transferToX][transferToY].getWaterSurface() + 0.01f;
@@ -80,22 +84,22 @@ public class FlowPanel extends JPanel implements Runnable {
 		//land.getGrid()[transferToX][transferToY].setWaterSurface(added);
 		Flow.fp.land.getGrid()[transferToX][transferToY].setWaterDepth(1);
 
-		/*Color waterColor = new Color(21,6,189);
+		Color waterColor = new Color(21,6,189);
 		Color transparent = new Color(200,195,255,0);
 
 		Flow.fp.land.getWaterImage().setRGB(x,y,transparent.getRGB());
 		Flow.fp.land.getWaterImage().setRGB(transferToX,transferToY,waterColor.getRGB());
-		*/
+		
 		Flow.fp.repaint();
 
 
-	}
+	}*/
 	
 	public void run() {	
 		// display loop here
 		// to do: this should be controlled by the GUI
 		// to allow stopping and starting
-		Color waterColor = new Color(21,6,189);
+		/*Color waterColor = new Color(21,6,189);
 		Color transparent = new Color(0,0,0,0);
 		while(loop)
 		{
@@ -121,7 +125,7 @@ public class FlowPanel extends JPanel implements Runnable {
 				/*if(land.getGrid()[x][y].getWaterSurface() > land.getGrid()[lowestPointX][lowestPointY].getWaterSurface()){
 					transfer(x,y,lowestPointX,lowestPointY);//this will do both graphical and mathematical transfers
 				}*/
-				}
+		/*		}
 				else{
 					Flow.fp.land.getWaterImage().setRGB(i,j,transparent.getRGB());
 				}
@@ -129,7 +133,7 @@ public class FlowPanel extends JPanel implements Runnable {
 			}
 		}
 		Flow.fp.repaint();
-		}
+		}*/
 	}
 /*	void suspend(){
 		running = false;

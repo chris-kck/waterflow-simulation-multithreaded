@@ -10,22 +10,22 @@ import java.io.PrintWriter;
 
 public class Terrain {
 
-	static Points grid[][]; // regular grid of height values
+	volatile static Points grid[][]; // regular grid of height values
 	int dimx, dimy; // data dimensions
 	static BufferedImage img; // greyscale image for displaying the terrain top-down
 	static BufferedImage waterImage;
 
-	ArrayList<Integer> permute;	// permuted list of integers in range [0, dimx*dimy)
+	volatile ArrayList<Integer> permute;	// permuted list of integers in range [0, dimx*dimy)
 	
 	// overall number of elements in the height grid
 	int dim(){
 		return dimx*dimy;
 	}
 	// get the array of heights
-	public static Points[][] getGrid(){
+	static Points[][] getGrid(){
 		return grid;
 	}
-	public static BufferedImage getWaterImage(){
+	static BufferedImage getWaterImage(){
 		return waterImage;
 	}
 	
@@ -40,7 +40,7 @@ public class Terrain {
 	}
 	
 	// get greyscale image
-	public static BufferedImage getImage() {
+	static BufferedImage getImage() {
 		  return img;
 	}
 	

@@ -35,10 +35,10 @@ public class Flow {
         g.setLayout(new BoxLayout(g, BoxLayout.PAGE_AXIS)); 
    
 		fp = new FlowPanel(landdata);
-		waterThreads[0] = new Parallelize(0,landdata.dim()/4);
-		waterThreads[1] = new Parallelize(landdata.dim()/4,landdata.dim()/2);
-		waterThreads[2] = new Parallelize(landdata.dim()/2,3*(landdata.dim())/4);
-		waterThreads[3] = new Parallelize(3*(landdata.dim())/4,landdata.dim());
+		waterThreads[0] = new Parallelize(0,landdata.dim());
+		//waterThreads[1] = new Parallelize(landdata.dim()/4,landdata.dim()/2);
+		//waterThreads[2] = new Parallelize(landdata.dim()/2,3*(landdata.dim())/4);
+		//waterThreads[3] = new Parallelize(3*(landdata.dim())/4,landdata.dim());
 
 		fp.setPreferredSize(new Dimension(frameX,frameY));
 		fp.addMouseListener(new WaterClickListener());
@@ -62,8 +62,8 @@ public class Flow {
 		JButton pauseB = new JButton("Pause");
 		pauseB.addActionListener(new ActionListener(){
 			public void actionPerformed( ActionEvent e){ 
-				for(int i = 0; i < 4; i++){
-					waterThreads[i].suspend();
+				for(int i = 0; i < 1; i++){
+					waterThreads[i].pause();
 				}
 			}
 		});
@@ -71,8 +71,8 @@ public class Flow {
 		JButton playB = new JButton("Play");
 		playB.addActionListener(new ActionListener(){
 			public void actionPerformed( ActionEvent e){
-				for(int i = 0; i < 4; i++){
-					waterThreads[i].resume();
+				for(int i = 0; i < 1; i++){
+					waterThreads[i].play();
 				}
 			}
 		});
@@ -83,7 +83,7 @@ public class Flow {
 			public void actionPerformed(ActionEvent e){
 				// to do ask threads to stop
 				frame.dispose();
-				for(int i = 0; i < 4; i++){
+				for(int i = 0; i < 1; i++){
 					waterThreads[i].loop = false;
 				}
 			}
@@ -111,10 +111,10 @@ public class Flow {
 	//Thread fpt2 = new Thread(fp2);
 	//fpt2.start();
 	Thread [] para = new Thread[4];
-	for(int i = 0; i < 4; i++){
+	for(int i = 0; i < 1; i++){
 		para[i] = new Thread(waterThreads[i]);
 	}
-	for(int j = 0; j < 4; j++){
+	for(int j = 0; j < 1; j++){
 		para[j].start();
 	}
 
