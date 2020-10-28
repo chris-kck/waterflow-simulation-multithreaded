@@ -1,0 +1,117 @@
+commit 06cb3f44e3e56dbf553edab0614c2556aa1bcde8
+Author: Zongo Maqutu <MQTZON001@myuct.ac.za>
+Date:   Thu Sep 24 01:22:45 2020 +0200
+
+    Version 17: Filal files for submission
+
+commit 554b89b40c668283ffe80cca3f95c406991fbfbe
+Author: Zongo Maqutu <MQTZON001@myuct.ac.za>
+Date:   Wed Sep 23 00:02:32 2020 +0200
+
+    Version 16: Used fpt.run() to conduct simulation. Major lagging issues
+
+commit f20f194229dacdb186d1f74455bd405411e2524a
+Author: Zongo Maqutu <MQTZON001@myuct.ac.za>
+Date:   Tue Sep 22 22:31:08 2020 +0200
+
+    Version 15: removed class files
+
+commit 18a34303183ae45210829235092503a20b411c27
+Author: Zongo Maqutu <MQTZON001@myuct.ac.za>
+Date:   Tue Sep 22 22:28:21 2020 +0200
+
+    Version 14
+
+commit ec7bb4c41bbd0170a9f370210d9a5297a9368ec1
+Author: Zongo Maqutu <MQTZON001@myuct.ac.za>
+Date:   Tue Sep 22 22:08:57 2020 +0200
+
+    Revert "Version 10 trying to implement wait"
+    
+    This reverts commit fc0cbe725a9bfc7d9922755375c040e15ce8c1f7.
+
+commit 5ed7990052bb992db6b8366c705e5f47d46adf74
+Author: Zongo Maqutu <MQTZON001@myuct.ac.za>
+Date:   Tue Sep 22 21:57:23 2020 +0200
+
+    Revert "Version 13: will attempt to revert to commit version 11"
+    
+    This reverts commit 0b4c30489194c7a5fa04833ebf722ba877e91e12.
+
+commit 0b4c30489194c7a5fa04833ebf722ba877e91e12
+Author: Zongo Maqutu <MQTZON001@myuct.ac.za>
+Date:   Tue Sep 22 21:54:02 2020 +0200
+
+    Version 13: will attempt to revert to commit version 11
+
+commit 150bd804afdf9bc2a4acadd2d480af20f6a7ce6b
+Author: Zongo Maqutu <MQTZON001@myuct.ac.za>
+Date:   Tue Sep 22 21:39:25 2020 +0200
+
+    Version 12: nothing is working now
+
+commit 5ad7b138426c1e16fd95e44750a2d36af1131195
+Author: Zongo Maqutu <MQTZON001@myuct.ac.za>
+Date:   Tue Sep 22 21:17:24 2020 +0200
+
+    Version 11 attempting to separate GUI thread to calculation threads
+
+commit fc0cbe725a9bfc7d9922755375c040e15ce8c1f7
+Author: Zongo Maqutu <MQTZON001@myuct.ac.za>
+Date:   Mon Sep 21 05:43:45 2020 +0200
+
+    Version 10 trying to implement wait
+
+commit 8f8a010f1209ed35aa9331e1f10d15e7f996a540
+Author: Zongo Maqutu <MQTZON001@myuct.ac.za>
+Date:   Mon Sep 21 05:37:26 2020 +0200
+
+    Version 9: Parallelize class works in moving water in parallel. Test JFrame Freezing next
+
+commit 5a7db375e12e42af7bf971e533fa8b37f8ecc763
+Author: Zongo Maqutu <MQTZON001@myuct.ac.za>
+Date:   Mon Sep 21 02:49:36 2020 +0200
+
+    Version 8: New Threading approact. Created New Parallelize class that extends FlowPanel. This will prevent freezing of entire JFrame on wait()
+
+commit 01b1655610c3e1ba620a57baafdbf3a89c06586a
+Author: Zongo Maqutu <MQTZON001@myuct.ac.za>
+Date:   Sun Sep 20 11:44:00 2020 +0200
+
+    Version 7: Inside implementThreads branch. Successfully implemented concurrency in 2 threads. Small inaccuracies need to fix
+
+commit f8bbd27d6c58740084acfe3585852e747b0a682b
+Author: Zongo Maqutu <MQTZON001@myuct.ac.za>
+Date:   Fri Sep 18 23:28:02 2020 +0200
+
+    Version 6: All 4 Buttons work as expected. Program still running on 1 thread
+
+commit 63b2a5e6bc472eb1ff687c592a696cc03e0c9db3
+Author: Zongo Maqutu <MQTZON001@myuct.ac.za>
+Date:   Wed Sep 16 04:32:53 2020 +0200
+
+    Version 5: Successfuly Implemented the visual simulation of water flowing across the terrain :)
+
+commit de62c979af443e66646ded192c4cebe0eb089422
+Author: Zongo Maqutu <MQTZON001@myuct.ac.za>
+Date:   Tue Sep 15 17:36:45 2020 +0200
+
+    Version 4: Tested addWater() & addWaterOnScreen(). Both work as expected
+
+commit e57db2b7f9eac87f94c983b2384e86ae86c09d14
+Author: Zongo Maqutu <MQTZON001@myuct.ac.za>
+Date:   Tue Sep 15 04:43:18 2020 +0200
+
+    Version 3: Added addWaterOnScreen function and getters and setters for proper OOP
+
+commit cc9a54f644cd5cf8d1e282420c439862222dbe24
+Author: Zongo Maqutu <MQTZON001@myuct.ac.za>
+Date:   Tue Sep 15 02:35:12 2020 +0200
+
+    Version 2: Adding blue water onClick implemented successfully
+
+commit 481e38d9e451abc614fdb057777abaa253637b84
+Author: Zongo Maqutu <MQTZON001@myuct.ac.za>
+Date:   Sat Sep 12 23:20:38 2020 +0200
+
+    Version1: In this commit I have implemented changinging waterDepth onClick
