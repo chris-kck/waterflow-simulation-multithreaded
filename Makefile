@@ -31,7 +31,7 @@ runLarge:
 
 
 runMedium:
-	@java -cp bin Flow "data/mediumsample.txt"
+	@java -cp bin Flow "data/medsample_in.txt"
 
 #Write a section that will generate and clean Javadoc 
 
