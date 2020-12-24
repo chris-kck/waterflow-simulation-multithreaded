@@ -1,59 +1,61 @@
-<h1 align="center">3D Pathfinding Algorithm Visualizer </h1>
+<h1 align="center"> Waterflow simulation</h1>
 
 <div align="center" >
-  <img src="https://img.shields.io/badge/made%20by-Zongo%20Maqutu-blue" />
-  <img src="https://img.shields.io/badge/React%20Js-v17.0.1-61dafb" />
-  <img src="https://img.shields.io/badge/Javascript-94%25-fffe6a" />
-  <img src="https://img.shields.io/badge/HTML-94%25-e34c26" />
-  <img src="https://img.shields.io/badge/pull%20requests-welcome-green" />
+  <img src="https://img.shields.io/badge/made%20by-Zongo%20Maqutu-blue?style=for-the-badge&labelColor=20232a" />
+  <img src="https://img.shields.io/badge/Java-20232a?style=for-the-badge&logo=java" />
+  <img src="https://img.shields.io/badge/Java Libraries-AWT-fffe6a?style=for-the-badge&logo=java&labelColor=20232a" />
+  <img src="https://img.shields.io/badge/Concurrent Programming-e34c26?style=for-the-badge&logo=github" />
+  <img src="https://img.shields.io/badge/pull%20requests-welcome-green?style=for-the-badge&logo=github&labelColor=20232a" />
 </div>
 
-*A Visualizer for some common pathfinding algorithms in 3D.*
+## Table of Contents
+* [Features](#features)
+* [Libraries Used](#libraries)
+* [Project Setup](#license)
+* [Future Scope](#license)
+## Description 
+*A multi-threaded implementation of a waterflow simulation that shows how water flows on a terrain flows downhill.*
 ## Live Demo
-A live interactive demo can be found [here](https://zmaqutu.github.io/3D-Pathfinding-Visualizer/).
-<img src="./readmeAssets/WorldSetup.gif" width="100%">
+A live interactive demo can be found [below](https://zmaqutu.github.io/3D-Pathfinding-Visualizer/).
+<img src="./readme_assets/WaterflowDemo.gif" width="100%">
 
 ## Features
-### Weighted and unweighted algorithms
-* **Dijkstra’s algorithm** (weighted) <br>
-The father of pathfinding algorithms, it creates a tree of shortest paths from the starting vertex, the source, to all other points in the graph. <b>Guarantees</b> the shortest path!
+* **Display** <br>
+&emsp;A main display window that shows the landscape as a greyscale image, with black
+representing the lowest elevation and white the highest. Overlaid on this should be an
+image representing the locations of water in blue. Note that although the water will
+have a depth, represented as an integer value, the colouring is the same uniform blue
+for any depth value greater than zero.
 
-* **A\* Search algorithm** (weighted) <br>
-One of the best and a popular technique used in path-finding and graph traversals with heuristic. <b>Guarantees</b> the shortest path!
+* **Buttons** <br>
+&emsp;A ‘reset’ button that zeroes both the water depth across the entire landscape and the
+timestep count.<br>
+&emsp;A ‘pause’ button that temporarily stops the simulation. <br>
+&emsp;A ‘play’ button that either starts the simulation or allows it to continue running if it was previously paused.<br>
+&emsp;An ‘end’ button that closes the window and exits the program.<br>
 
-* **Breadth-First Search** (unwighted) <br>
-The algorithm starts at the tree root, and explores all of the neighbor nodes at the present depth prior to moving on to the nodes at the next depth level. <b>Guarantees</b> the shortest path!
 
-* **Depth-First Search** (unwighted) <br>
-The algorithm starts at the root node and explores as far as possible along each branch before backtracking. <b>Does not guarantee</b> the shortest path!
+* **Multi-threaded processing** <br>
+&emsp;The simulation is carried out by four threads each responsible for processing a random but final portion of the points on the list of grid positions.These threads are synchronised on each timestep. That is, no thread is ever allowed to start the next timestep of simulation before all others are complete. The program exhibits “fluid conservation”. Water can only be created through user mouse input and destroyed by reaching the boundary. The simulation itself is
+only responsible for moving water over the terrain.
 
-### Maze generation
-Two methods to generate a maze:
-* Recursive Division <img src="./readmeAssets/RecursiveDijkstra.gif" width="100%">
-* Random Maze<img src="./readmeAssets/RandomMaze.gif" width="100%">
 
-### Libraries used
-* Three.js
-* react-three-fiber
-* Tween.js
+### Libraries Used
+* Java Abstract Window Toolkit (AWT)
+* Java's concurrency library
 
-## Contributing
-Contributions are welcome. Please feel free to make a PR.
 
-## Project setup
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## Project setup  
+To run this project make sure you have downloaded and installed java. Then run the Makefile with the commands[Download and install Java](https://www.oracle.com/java/technologies/javase-downloads.html).
 ```
-npm install
-npm start
+make runLarge       // Runs simulation with large terrain (1024x1024 dimensions)
+make runMedium      //Runs simulation with medium terrain (512x512 dimensions)
 ```
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
 
 ## Future Scope
-* Add trees and buildings as wall objects
-* Add button to toggle node information as text on each node in shortest path
-* Add funcitonality to move start and finish nodes by dragging
-* Add control panel to edit world setup more 
-* Add more algorithms to visualize
+* Add testing scripts to find and remove bugs
+* Add a counter that displays the number of timesteps since the start of the simulation 
+* Add scripts to randomly generate terrains of any size for testing
 
-<p align="center">Made with ❤️ in React.js</p>
+<p align="center">Made with ❤️ with good ol' vim</p>
+
